@@ -1,5 +1,6 @@
 # Tic Tac Toe game
 class TicTacToe
+  attr_accessor :positions_with_values
   WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
                       [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
   def initialize
@@ -19,12 +20,12 @@ class TicTacToe
   end
 
   def display
-    puts ''
-    puts " #{positions_with_values['1']} | #{positions_with_values['2']} | #{positions_with_values['3']} "
-    puts '-----------'
-    puts " #{positions_with_values['4']} | #{positions_with_values['5']} | #{positions_with_values['6']} "
-    puts '-----------'
-    puts " #{positions_with_values['7']} | #{positions_with_values['8']} | #{positions_with_values['9']} "
-    puts ''
+    @pos = positions_with_values
+    puts @grid = "
+       #{@pos[1]}| #{@pos[2]}| #{@pos[3]}
+      -----
+       #{@pos[4]}| #{@pos[5]}| #{@pos[6]}
+      -----
+       #{@pos[7]}| #{@pos[8]}| #{@pos[9]}"
   end
 end
