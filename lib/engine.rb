@@ -29,7 +29,3 @@ class TicTacToe
        #{@pos[7]}| #{@pos[8]}| #{@pos[9]}"
   end
 end
-
-p = TicTacToe.new
-
-p.display
