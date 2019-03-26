@@ -1,19 +1,36 @@
-# User interface
-class UserInterface
-  attr_accessor :ply1
-  attr_accessor :ply2
-  def intialize(ply1, ply2)
-    @ply1 = ply1
-    @ply2 = ply2
+# Tic Tac Toe game
+class TicTacToe
+  attr_accessor :positions_with_values
+  WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
+                      [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
+  def initialize
+    @positions_with_values = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
 
-  def p1_move(board, position, _engine) # player1 move
-    board.positions_with_values[position] = ply1
-    board.display
+  def display_positions
+    puts ''
+    puts ' 1 | 2 | 3 '
+    puts '-----------'
+    puts ' 4 | 5 | 6 '
+    puts '-----------'
+    puts ' 7 | 8 | 9 '
+    puts ''
   end
 
-  def p2_move(board, position, _engine) # player2 move
-    board.positions_with_values[position] = ply2
-    board.display
+  def display
+    @pos = positions_with_values
+    puts @grid = "
+       #{@pos[1]}|#{@pos[2]}|#{@pos[3]}
+       -----
+       #{@pos[4]}|#{@pos[5]}|#{@pos[6]}
+       -----
+       #{@pos[7]}|#{@pos[8]}|#{@pos[9]}"
+  end
+
+  def modify
+    puts 'Make your move!'
+    m = gets.chomp.to_i
+    @pos = positions_with_values
+    @pos[m] = 'O'
   end
 end
