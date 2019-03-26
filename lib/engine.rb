@@ -19,3 +19,4 @@ class UserInterface
     board.display
   end
 end
+# add game logic
