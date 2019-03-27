@@ -2,10 +2,11 @@ require_relative './../lib/engine.rb'
 require_relative './../lib/user_interface.rb'
 # game running class
 class Game
+    attr_accessor :board
   game = TicTacToe.new
    engine = Engine.new
 
-   board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+   board = game.board
   game.display_positions
 engine.play(board)
 
