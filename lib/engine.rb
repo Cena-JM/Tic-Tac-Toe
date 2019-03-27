@@ -1,9 +1,15 @@
 require_relative './user_interface'
 # Engine
 class Engine
+  attr_accessor :board
   # add game logic
-  @@wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
-          [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
+  def initialize
+    @wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
+             [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
+             game = TicTacToe.new  
+             board = game.board
+  end
+
   def display(board)
     # @pos = positions_with_values
     puts @grid = "
@@ -13,6 +19,7 @@ class Engine
         -----
         #{board[6]}|#{board[7]}|#{board[8]}"
   end
+
   def indexing(user_input)
     user_input.to_i - 1
   end
@@ -58,7 +65,7 @@ class Engine
   end
 
   def win?(board)
-    @@wins.each do |win_combination|
+    @wins.each do |win_combination|
       win_1 = win_combination[0]
       win_2 = win_combination[1]
       win_3 = win_combination[2]
@@ -103,7 +110,7 @@ class Engine
 
   def winner(array)
     if win?(array)
-      @@wins.each do |win_combination|
+      @wins.each do |win_combination|
         pos_1 = array[win_combination[0]]
         pos_2 = array[win_combination[1]]
         pos_3 = array[win_combination[2]]
@@ -124,10 +131,6 @@ class Engine
       puts "Cat's Game!"
     end
   end
-  # board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-  # play(board)
+
 end
 
-musa = Engine.new
-board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-musa.play(board)

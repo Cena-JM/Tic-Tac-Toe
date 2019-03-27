@@ -2,10 +2,11 @@
 class TicTacToe
   attr_accessor :positions_with_values
   attr_accessor :wins
-  wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
-          [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
+  attr_accessor :board
   def initialize
-    @positions_with_values = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    @wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
+             [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
+    @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
 
   def display_positions
@@ -18,20 +19,13 @@ class TicTacToe
     puts ''
   end
 
-  def display
-    @pos = positions_with_values
+  def display(board)
+    # @pos = positions_with_values
     puts @grid = "
-       #{@pos[1]}|#{@pos[2]}|#{@pos[3]}
-       -----
-       #{@pos[4]}|#{@pos[5]}|#{@pos[6]}
-       -----
-       #{@pos[7]}|#{@pos[8]}|#{@pos[9]}"
-  end
-
-  def modify
-    puts 'Make your move!'
-    m = gets.chomp.to_i
-    @pos = positions_with_values
-    @pos[m] = 'O'
+        #{board[0]}|#{board[1]}|#{board[2]}
+        -----
+        #{board[3]}|#{board[4]}|#{board[5]}
+        -----
+        #{board[6]}|#{board[7]}|#{board[8]}"
   end
 end
