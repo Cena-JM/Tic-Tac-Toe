@@ -80,11 +80,8 @@ class Engine
     array.each do |move|
       count += 1 if move.include?('X') || move.include?('O')
     end
-    if count == 9
-      return true
-    else
-      return false
-    end
+    true if count == 9
+    false if count != 9
   end
 
   def draw?(array)
