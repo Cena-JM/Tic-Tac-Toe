@@ -103,14 +103,11 @@ class Engine
   def winner(array)
     if win?(array)
       @wins.each do |win_combination|
-        pos_1 = array[win_combination[0]]
-        pos_2 = array[win_combination[1]]
-        pos_3 = array[win_combination[2]]
-        if pos_1 == 'X' && pos_2 == 'X' && pos_3 == 'X'
-          return 'X'
-        elsif pos_1 == 'O' && pos_2 == 'O' && pos_3 == 'O'
-          return 'O'
-        end
+        p_a = array[win_combination[0]]
+        p_b = array[win_combination[1]]
+        p_c = array[win_combination[2]]
+        'X' if p_a == 'X' && p_b == 'X' && p_c == 'X'
+        'O' if p_a == 'O' && p_b == 'O' && p_c == 'O'
       end
     end
   end
