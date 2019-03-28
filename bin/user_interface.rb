@@ -1,4 +1,5 @@
 # Tic Tac Toe game
+# This is where the user interacts with the game
 class TicTacToe
   INFO = <<Doc.freeze
   *******************************************************************

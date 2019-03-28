@@ -1,8 +1,7 @@
 require_relative '../bin/user_interface'
-# Engine
+# Engine is the logical(brians) class of the game
 class Engine
   attr_accessor :board
-  # add game logic
   def initialize
     puts 'Player1 enter your name?'
     @player1 = gets.chomp
