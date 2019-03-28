@@ -20,11 +20,13 @@ class Engine
     board[index] = current_player
   end
 
-  def valid_move?(_array, index)
+  def valid_move?(array, index)
     if index < 0 || index > 8 || index.nil?
       false
-    else
+    elsif array[index] == ' ' || array[index] == ''
       true
+    else
+      false
     end
   end
 
