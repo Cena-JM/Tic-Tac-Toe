@@ -23,10 +23,12 @@ class Engine
   def valid_move?(array, index)
     if index < 0 || index > 8 || index.nil?
       false
+      puts 'Please Select Box Between 1-9!'
     elsif array[index] == ' ' || array[index] == ''
       true
     else
       false
+      puts 'Please Select Unoccupied!'
     end
   end
 
