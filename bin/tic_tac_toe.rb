@@ -1,5 +1,5 @@
 require_relative './../lib/engine.rb'
-require_relative './../lib/user_interface.rb'
+require_relative '../bin/user_interface.rb'
 # game running class
 class Game
   attr_accessor :board

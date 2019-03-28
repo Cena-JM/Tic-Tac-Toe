@@ -1,4 +1,4 @@
-require_relative './user_interface'
+require_relative '../bin/user_interface'
 # Engine
 class Engine
   attr_accessor :board
