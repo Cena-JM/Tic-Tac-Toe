@@ -8,6 +8,7 @@ class Engine
     @player1 = gets.chomp
     puts 'player2 enter your name?'
     @player2 = gets.chomp
+    @dp = TicTacToe.new
     @wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
              [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
   end
@@ -31,17 +32,12 @@ class Engine
   end
 
   def turn(board)
-    dp = TicTacToe.new
-    if current_player(board) == 'X'
-      puts "\n#{@player1} enter 1-9"
-    else
-      puts "#{@player2} enter 1-9"
-    end
-    input = gets.strip
-    index = indexing(input)
+    puts "\n#{@player1} enter 1-9" if current_player(board) == 'X'
+    puts "#{@player2} enter 1-9" if current_player(board) == 'O'
+    index = indexing(gets.strip)
     if valid_move?(board, index)
       move(board, index, current_player(board))
-      dp.display(board)
+      @dp.display(board)
     else
       turn(board)
     end
