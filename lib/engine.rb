@@ -54,25 +54,28 @@ class Engine
   end
 
   def current_player(board)
-    if turn_count(board).even? == true
-      'X'
-    else
-      'O'
-    end
+    turn_count(board).even? == true ? 'X' : 'O'
   end
 
   def win?(board)
-    @wins.each do |win_combination|
-      w_a = win_combination[0]
-      w_b = win_combination[1]
-      w_c = win_combination[2]
-      p_a = board[w_a]
-      p_b = board[w_b]
-      p_c = board[w_c]
-      return win_combination if (p_a == 'X' && p_b == 'X' && p_c == 'X') ||
-                                (p_a == 'O' && p_b == 'O' && p_c == 'O')
+    @wins.each do |win_combo|
+      p_a = board[win_combo[0]]
+      p_b = board[win_combo[1]]
+      p_c = board[win_combo[2]]
+      return win_combo if test(board) ||
+                          (p_a == 'O' && p_b == 'O' && p_c == 'O')
     end
     nil
+  end
+
+  def test(board)
+    @wins.each do |win_combo|
+      p_a = board[win_combo[0]]
+      p_b = board[win_combo[1]]
+      p_c = board[win_combo[2]]
+      return true if p_a == 'X' && p_b == 'X' && p_c == 'X'
+    end
+    false
   end
 
   def full?(array)
@@ -85,39 +88,24 @@ class Engine
   end
 
   def draw?(array)
-    if full?(array) && !win?(array)
-      true
-    else
-      false
-    end
+    full?(array) && !win?(array) ? true : false
   end
 
   def over?(array)
-    if win?(array) || draw?(array) || full?(array)
-      true
-    else
-      false
-    end
+    win?(array) || draw?(array) || full?(array) ? true : false
   end
 
-  def winner(array)
-    if win?(array)
-      @wins.each do |win_combination|
-        p_a = array[win_combination[0]]
-        p_b = array[win_combination[1]]
-        p_c = array[win_combination[2]]
-        'X' if p_a == 'X' && p_b == 'X' && p_c == 'X'
-        'O' if p_a == 'O' && p_b == 'O' && p_c == 'O'
+  def winner(arr)
+    if win?(arr)
+      @wins.each do |win_combo|
+        'X' if arr[win_combo[0]] == 'X' && arr[win_combo[1]] == 'X' && arr[win_combo[2]] == 'X'
+        'O' if arr[win_combo[0]] == 'O' && arr[win_combo[1]] == 'O' && arr[win_combo[2]] == 'O'
       end
     end
   end
 
   def player(board)
-    if winner(board) == 'X'
-      @player1
-    else
-      @player2
-    end
+    winner(board) == 'X' ? @player2 : @player1
   end
 
   def play(board)
