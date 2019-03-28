@@ -1,14 +1,14 @@
 # Tic Tac Toe game
 # This is where the user interacts with the game
 class TicTacToe
-  INFO = <<Doc.freeze
+  INFO = <<DOC.freeze
   *******************************************************************
                     Tic-Tac-Toe game in Ruby Language
                                 Authors:
                           Musa Jabbaaru Ntege
                               Zeha Irawan
   *******************************************************************
-Doc
+DOC
   attr_accessor :positions_with_values
   attr_accessor :wins
   attr_accessor :board
