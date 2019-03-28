@@ -83,8 +83,7 @@ class Engine
     array.each do |move|
       count += 1 if move.include?('X') || move.include?('O')
     end
-    true if count == 9
-    false if count != 9
+    count == 9
   end
 
   def draw?(array)
@@ -95,12 +94,13 @@ class Engine
     win?(array) || draw?(array) || full?(array) ? true : false
   end
 
-  def winner(arr)
-    if win?(arr)
-      @wins.each do |win_combo|
-        'X' if arr[win_combo[0]] == 'X' && arr[win_combo[1]] == 'X' && arr[win_combo[2]] == 'X'
-        'O' if arr[win_combo[0]] == 'O' && arr[win_combo[1]] == 'O' && arr[win_combo[2]] == 'O'
-      end
+  def winner(array)
+    win?(array)
+    @wins.each do |win_combo|
+      pos = [array[win_combo[0]], array[win_combo[1]], array[win_combo[2]]]
+      unq = pos.uniq
+      'X' if unq == 'X'
+      'O' if unq == 'O'
     end
   end
 
