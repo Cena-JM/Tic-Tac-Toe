@@ -1,13 +1,16 @@
 require_relative '../bin/user_interface'
+require_relative './player.rb'
 # Engine is the logical(brians) class of the game
 class Engine
   attr_accessor :board
   def initialize
     puts 'Player1 enter your name?'
-    @player1 = gets.chomp
+    @player1 = Player.new(gets.chomp)
     puts 'player2 enter your name?'
-    @player2 = gets.chomp
-    @dp = TicTacToe.new
+    @player2 = Player.new(gets.chomp)
+    @player1.symbol = 'X'
+    @player2.symbol = 'O'
+    @dp = UserInterface.new
     @wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
              [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]].freeze
   end
@@ -33,8 +36,8 @@ class Engine
   end
 
   def turn(board)
-    puts "\n#{@player1} enter 1-9" if current_player(board) == 'X'
-    puts "#{@player2} enter 1-9" if current_player(board) == 'O'
+    puts "\n#{@player1.name} enter 1-9" if current_player(board) == @player1.symbol
+    puts "#{@player2.name} enter 1-9" if current_player(board) == @player2.symbol
     index = indexing(gets.strip)
     if valid_move?(board, index)
       move(board, index, current_player(board))
@@ -47,13 +50,13 @@ class Engine
   def turn_count(array)
     counter = 0
     array.each do |move|
-      counter += 1 if move.include?('X') || move.include?('O')
+      counter += 1 if move.include?(@player1.symbol) || move.include?(@player2.symbol)
     end
     counter
   end
 
   def current_player(board)
-    turn_count(board).even? == true ? 'X' : 'O'
+    turn_count(board).even? == true ? @player1.symbol : @player2.symbol
   end
 
   def win?(board)
@@ -62,7 +65,7 @@ class Engine
       p_b = board[win_combo[1]]
       p_c = board[win_combo[2]]
       return win_combo if test(board) ||
-                          (p_a == 'O' && p_b == 'O' && p_c == 'O')
+                          (p_a == @player2.symbol && p_b == @player2.symbol && p_c == @player2.symbol)
     end
     nil
   end
@@ -72,7 +75,7 @@ class Engine
       p_a = board[win_combo[0]]
       p_b = board[win_combo[1]]
       p_c = board[win_combo[2]]
-      return true if p_a == 'X' && p_b == 'X' && p_c == 'X'
+      return true if p_a == @player1.symbol && p_b == @player1.symbol && p_c == @player1.symbol
     end
     false
   end
@@ -80,7 +83,7 @@ class Engine
   def full?(array)
     count = 0
     array.each do |move|
-      count += 1 if move.include?('X') || move.include?('O')
+      count += 1 if move.include?(@player1.symbol) || move.include?(@player2.symbol)
     end
     count == 9
   end
@@ -98,13 +101,13 @@ class Engine
     @wins.each do |win_combo|
       pos = [array[win_combo[0]], array[win_combo[1]], array[win_combo[2]]]
       unq = pos.uniq
-      'X' if unq == 'X'
-      'O' if unq == 'O'
+      @player1.symbol if unq == @player1.symbol
+      @player2.symbol if unq == @player2.symbol
     end
   end
 
   def player(board)
-    winner(board) == 'X' ? @player2 : @player1
+    winner(board) == @player1.symbol ? @player2.name : @player1.name
   end
 
   def play(board)
