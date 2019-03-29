@@ -1,6 +1,6 @@
 # Tic Tac Toe game
 # This is where the user interacts with the game
-class TicTacToe
+class UserInterface
   INFO = <<DOC.freeze
   *******************************************************************
                     Tic-Tac-Toe game in Ruby Language
