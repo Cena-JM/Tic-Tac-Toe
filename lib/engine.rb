@@ -119,3 +119,11 @@ class Engine
     end
   end
 end
+
+game = UserInterface.new
+game.display_info
+game.display_positions
+board = game.board
+
+engine = Engine.new
+engine.play(board)
