@@ -27,6 +27,7 @@ class Controls
     status = false
     @wins.each do |draft|
       next unless draft.subset?(moves.to_set)
+
       status = true
       break
     end
