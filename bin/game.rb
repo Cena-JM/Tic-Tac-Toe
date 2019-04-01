@@ -46,7 +46,7 @@ begin
       end
     end
   end
-  # rescue StandardError => exception
-  #   controls.error(exception)
-  #   retry
+rescue StandardError => exception
+  controls.error(exception)
+  retry
 end
