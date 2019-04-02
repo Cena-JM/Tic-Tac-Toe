@@ -14,12 +14,4 @@ class Board
   def available_positions(move)
     @board.to_set.include?(move)
   end
-
-  def count_moves
-    count = 0
-    @board.each do |move|
-      count += 1 if [move].include?('X') || [move].include?('O')
-    end
-    count
-  end
 end
